@@ -9,17 +9,18 @@ Some pseudocode here
 ```
 
 # Successes
-Description of the team's learning points
+I was bale to build majority of the functions until I gpt til the last two. Felt great about this and my coding ability.
 
 # Struggles
 I had issues understanding some parts implementing these functions. Also understanding the earlier graphs an
 
 # Personal Reflections
-## Group Leader
-Group leader's reflection on the project
+## Group Leader Earl
+I had to re-read this project multiple times and dig deep in some old notes for the coding aspect. I did comfuse myself with obtaining the output to match the examples, especially the last two functions. I
+started to think this algorithm was pointless and useless, but had to think about its' application in the biotech field.
 
 ## Other member
-Other members' reflections on the project
+NA
 
 # Generative AI Appendix
-As per the syllabus
+I used AI to decode some of the instructions in the html file to help understand more what I need to do to build the functions.
