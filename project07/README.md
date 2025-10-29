@@ -5,7 +5,27 @@ Project 07 focuses on Borrows -Wheeeler Transform, an algorithm which compresses
 Put pseudocode in this box,
 
 ```
-Some pseudocode here
+FUNCTION BWT(string)
+    special_character ← "$"
+    string ← string + special_character
+
+    INITIALIZE rotations AS empty list
+
+    FOR i FROM 0 TO LENGTH(string) - 1 DO
+        APPEND string TO rotations
+        string ← shift_right(string)
+    END FOR
+
+    SORT rotations lexicographically
+
+    last_chars ← empty string
+    FOR EACH rotation IN rotations DO
+        last_chars ← last_chars + LAST_CHARACTER(rotation)
+    END FOR
+
+    RETURN last_chars
+END FUNCTION
+
 ```
 
 # Successes
@@ -23,4 +43,4 @@ started to think this algorithm was pointless and useless, but had to think abou
 NA
 
 # Generative AI Appendix
-I used AI to decode some of the instructions in the html file to help understand more what I need to do to build the functions.
+I used AI to decode some of the instructions in the html file to help understand more what I need to do to build the functions. I also used AI to help write my pseudo code due to trying to get this in right before work and trying to understand why the last two functions were not working.
