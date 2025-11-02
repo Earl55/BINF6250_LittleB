@@ -30,6 +30,7 @@ END FUNCTION
 
 # Successes
 I was bale to build majority of the functions until I gpt til the last two. Felt great about this and my coding ability.
+Was able to add the last two functions of the BWT algorithm. Needed to really think about how and what was needed to be done LB 01Nov25
 
 # Struggles
 I had issues understanding some parts implementing these functions. Also understanding the earlier graphs an
