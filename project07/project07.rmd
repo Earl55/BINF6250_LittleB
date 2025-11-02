@@ -223,3 +223,95 @@ def cal_count(string: str) -> dict[str, int]:
 
 The function above, cal_count, is to count the occurences of the characters in the string but you start at 0 and then the total number of occures of that character gets added to the following character, but you start from the smallest character first.
 
+
+
+## Update Range
+
+```{python}
+def update_range(
+  lower: int, 
+  upper: int, 
+  count: dict[str, int],
+  occur: dict[str, list[int]], 
+  a: str) -> tuple[int, int]:
+    """Function to update range given character a.
+    
+    Updates the search range during backward search in the BWT pattern matching
+    algorithm when processing character a.
+    
+    Args:
+        lower: The lower boundary of the current range.
+        upper: The upper boundary of the current range.
+        count: Dictionary mapping each character to the count of lexicographically
+            smaller characters.
+        occur: Dictionary mapping each character to its occurrence counts at each
+            position.
+        a: The character being processed in the pattern.
+    
+    Returns:
+        A tuple containing the updated lower and upper boundaries of the range.
+    
+    Note:
+        This function assumes occur[a][-1] = 0 for boundary conditions.
+    """
+
+    chars_before_a = count[a]
+    a_count_before_lower = occur[a][lower-1] if lower > 0 else 0
+    a_count_upper = occur[a][upper]
+
+    new_lower = chars_before_a + a_count_before_lower
+    new_upper = chars_before_a + a_count_upper - 1
+
+    return new_lower, new_upper
+
+
+```
+
+
+
+## Find Match
+
+```{python}
+def find_match(query: str, reference: str) -> list[int]:
+    """Function to find exact matching by applying Burrows-Wheeler Transform.
+    
+    Searches for all occurrences of the query string within the reference string
+    using the Burrows-Wheeler Transform algorithm for efficient pattern matching.
+    
+    Args:
+        query: The pattern string to search for.
+        reference: The text string to search within.
+    
+    Returns:
+        A list of integers representing the 0-based starting positions of all
+        occurrences of the query string within the reference string. Returns an
+        empty list if no matches are found.
+    
+    Examples:
+        >>> find_match('ana', 'banana')
+        [1, 3]
+        
+        >>> find_match('xyz', 'banana')
+        []
+    """
+    suffix_arr = suffix_array(reference)
+    bwt = BWT_from_suffix_array(f"{reference}$", suffix_arr)
+    count = cal_count(bwt)
+    occur = cal_occur(bwt)
+    lower = 0
+    upper = len(bwt) - 1
+
+    for a in query[::-1]:
+
+        if a not in count:
+            return []
+
+        lower, upper = update_range(lower, upper, count, occur, a)
+
+        if upper < lower:
+            return []
+    
+    return suffix_arr[lower:upper+1]
+
+```
+
